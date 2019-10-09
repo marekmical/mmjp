@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: record-store-deployment
+spec:
+  selector:
+    matchLabels:
+      service: record-store-service
+  template:
+    metadata:
+      labels:
+        service: record-store-service
+    spec:
+      containers:
+        - name: jeppesen
+          imagePullPolicy: Never
+          image: jeppesen_service
+          ports:
+            - containerPort: 8080
